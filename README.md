@@ -69,6 +69,14 @@ Restart apache
 systemctl restart apache2
 ```
 
+## Add a simple web page
+
+Remove default apache page:
+```
+rm /var/www/html/index.html
+```
+
+
 # Verify
 
 When you visit the ip address (or web address) of your server,
@@ -91,6 +99,32 @@ $ curl -v http://<your-server-address>/
 ```
 Observe the header "GEO-COUNTRY-CODE".
 
+# Example country-aware web app:
+
+Create simple app (any language you prefer)
+
+e.g. If you want to use php for some reason:
+```
+apt install php
+systemctl restart apache2
+```
+
+`/var/www/html/index.php`
+
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Geo Location IP Country</title>
+  </head>
+  <body>
+  <h1>You are visiting from country code: <?php echo $_SERVER['GEO_COUNTRY_CODE']; ?></h1>
+  </body>
+</html>
+```
+
+Visit your server address and the web app will display the country you're visiting from.
 
 # Notes
 
