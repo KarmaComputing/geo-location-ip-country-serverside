@@ -56,7 +56,7 @@ python create.py # may take a while
 
         # Set the country code in the response header
         Header always set GEO-COUNTRY-CODE "%{GEO_COUNTRY_CODE}e"
-
+        RequestHeader set Geo-Country-Code "%{GEO_COUNTRY_CODE}e"
         ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
 
@@ -119,7 +119,7 @@ systemctl restart apache2
     <title>Geo Location IP Country</title>
   </head>
   <body>
-  <h1>You are visiting from country code: <?php echo $_SERVER['GEO_COUNTRY_CODE']; ?></h1>
+  <h1>You are visiting from country code: <?php echo $_SERVER['Geo-Country-Code']; ?></h1>
   </body>
 </html>
 ```
